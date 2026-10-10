@@ -1,0 +1,3 @@
+import { sqliteTable, text, integer, uniqueIndex } from "drizzle-orm/sqlite-core";
+export const waitlist=sqliteTable("waitlist",{id:text("id").primaryKey(),email:text("email").notNull(),createdAt:text("created_at").notNull(),consentVersion:text("consent_version").notNull(),source:text("source").notNull(),ghlStatus:text("ghl_status").notNull().default("pending"),syncedAt:text("synced_at")},table=>[uniqueIndex("waitlist_email_unique").on(table.email)]);
+export const requestLimits=sqliteTable("request_limits",{key:text("key").primaryKey(),count:integer("count").notNull().default(1),expiresAt:integer("expires_at").notNull()});
